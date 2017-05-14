@@ -10,7 +10,15 @@ www.arfedora.blogspot.com
 
 ![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2017-29-53.jpg "Screenshot")
 
+![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2018-17-08.jpg "Screenshot")
 
+![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2018-17-27.jpg "Screenshot")
+
+![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2018-00-16.jpg "Screenshot")
+
+![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2017-58-28.jpg "Screenshot")
+
+![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2018-02-08.jpg "Screenshot")
 
 
 * Require
