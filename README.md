@@ -42,7 +42,7 @@ www.arfedora.blogspot.com
 
   * ``` sudo chmod 755 ~/arfedora-installer/arfedora-installer or su -c "chmod 755 arfedora-installer/arfedora-installer" ```
 
-  * ``` sudo ~/arfedora-installer/arfedora-installer or su -c "arfedora-installer/arfedora-installer"```
+  * ``` ~/arfedora-installer/arfedora-installer or python3 ~/arfedora-installer/arfedora-installer ```
  
  
  
