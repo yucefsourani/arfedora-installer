@@ -38,7 +38,7 @@ www.arfedora.blogspot.com
 
 * To Use
  
-  * ``` cd && git clone https://github.com/yucefsourani/https://github.com/yucefsourani/arfedora-installer ```
+  * ``` cd && git clone https://github.com/yucefsourani/arfedora-installer ```
 
   * ``` sudo chmod 755 ~/arfedora-installer/arfedora-installer or su -c "chmod 755 arfedora-installer/arfedora-installer" ```
 
