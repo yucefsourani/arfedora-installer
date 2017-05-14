@@ -35,13 +35,8 @@ import subprocess
 import threading
 import multiprocessing
 from arfedoraframework import *
-gi.require_version("Gtk","3.0")
-from gi.repository import Gtk,GLib,GdkPixbuf
 
-import os,subprocess,sys
-result = {}
-
-                                            
+result = {}                                         
 project_location=os.path.dirname(os.path.abspath(__file__))
 
 gettext.install("arfedora-installer")
