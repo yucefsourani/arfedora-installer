@@ -31,6 +31,7 @@ www.arfedora.blogspot.com
 * Fedora
  
   * ``` sudo dnf install pygobject3 python3-gobject or dnf -c  "dnf install pygobject3 python3-gobject" ```
+  * ``` Install RPM Fusion (nonfree and free) Repository Configuration From Apps Group ```
 
  
  
