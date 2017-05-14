@@ -1,0 +1,36 @@
+{
+   
+   "id"                           : "Selinux_Permissive" ,
+   "message"                      : "SeLinux" ,
+   "info"                         : "Set SeLinux Mode Permissive/Enforcing" ,
+   "summary"                      : ["Set SeLinux To permissive","Set SeLinux To Permissive Mode","Set SeLinux To Enforcing Mode","SeLinux Is Disabled"] ,
+   "install_command"              : ["sed -i s/^SELINUX=.*$/SELINUX=permissive/g /etc/selinux/config"] ,
+   "remove_command"               : ["sed -i s/^SELINUX=.*$/SELINUX=enforcing/g /etc/selinux/config"] ,
+   "check_command"                : ["grep  ^SELINUX= /etc/selinux/config|grep permissive"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec","pkexec"] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "installcolor"                 : "#66CDDD" ,
+   "removecolor"                  : "#FF0000" ,
+   "textcolor"                    : "#FFFFFF" ,
+   "onblocktext"                  : "SeLinux Disabled" ,
+   "buttonlabel"                  : ["Set Permissive","Set Enforcing"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "selinux-penguin-new_medium.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : ["grep  ^SELINUX= /etc/selinux/config|grep disable"] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton" ,
+   "state_type"                   : 0 ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : true ,
+   "choice_install_message"       : "Are you sure do you want set SeLinux To permissive mode?",
+   "choice_remove_message"        : "Are you sure do you want set SeLinux To enforcing mode?",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : true
+
+}
+

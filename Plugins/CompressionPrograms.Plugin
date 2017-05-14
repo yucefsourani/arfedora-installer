@@ -1,0 +1,57 @@
+{
+   
+   "id"                           : "Compression_Programs" ,
+   "message"                      : "Compression Programs" ,
+   "info"                         : "Compression Programs zip,unar..." ,
+   "summary"                      : ["Compression Programs","Install Compression Programs","Remove Compression Programs",""] ,
+   "install_command"              : ["dnf install -y --best  zip p7zip gzip cpio unar p7zip-plugins"] ,
+   "remove_command"               : ["rpm -e --nodeps  zip p7zip gzip cpio unar p7zip-plugins"] ,
+   "check_command"                : ["rpm -q zip >/dev/null", "rpm -q p7zip >/dev/null", "rpm -q gzip >/dev/null", "rpm -q cpio >/dev/null", "rpm -q unar >/dev/null", "rpm -q p7zip-plugins >/dev/null"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec","pkexec"] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "installcolor"                 : "#66CDDD" ,
+   "removecolor"                  : "#FF0000" ,
+   "textcolor"                    : "#FFFFFF" ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Install","Remove"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "stuffit-expander-mac.png" ,
+   "group"                        : "Apps" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton",
+   "state_type"                   : 0 ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : true,
+   "choice_install_message"       : "Are you sure do you want install Compression Programs?",
+   "choice_remove_message"        : "Are you sure do you want remove Compression Programs?",
+   "program_name"                 : "arfedora-installer" ,
+   "run_from_file"                : true
+
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

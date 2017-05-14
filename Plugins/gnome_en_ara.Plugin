@@ -1,0 +1,36 @@
+{
+   
+   "id"                           : "Gnome_en_ara" ,
+   "message"                      : "Keyboard Source en/ara" ,
+   "info"                         : "Set Keyboard Source en/ara" ,
+   "summary"                      : ["Set Keyboard Source en/ara","Set Keyboard Source en/ara","Reset",""] ,
+   "install_command"              : [["norepr","gsettings set org.gnome.desktop.input-sources sources \"[('xkb', 'us'), ('xkb', 'ara')]\" "]] ,
+   "remove_command"               : ["gsettings reset org.gnome.desktop.input-sources sources"] ,
+   "check_command"                : ["gsettings get org.gnome.desktop.input-sources sources |grep ara |grep us>/dev/null"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["GNOME"] ,
+   "installcolor"                 : "#66CDDD" ,
+   "removecolor"                  : "#FF0000" ,
+   "textcolor"                    : "#FFFFFF" ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["En/ara","Reset"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "gnome_logo.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton" ,
+   "state_type"                   : 0 ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : false ,
+   "choice_install_message"       : "",
+   "choice_remove_message"        : "",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : true
+
+}
+

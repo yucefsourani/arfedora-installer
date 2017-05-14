@@ -1,0 +1,36 @@
+{
+   
+   "id"                           : "Mouse_Tap_To_Click" ,
+   "message"                      : "Mouse Tap To Click" ,
+   "info"                         : "Enable Mouse Tap To Click" ,
+   "summary"                      : ["Enable Mouse Tap To Click","Enable Mouse Tap To Click","Disable Mouse Tap To Click",""] ,
+   "install_command"              : ["gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true"] ,
+   "remove_command"               : ["gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false"] ,
+   "check_command"                : ["gsettings get org.gnome.desktop.peripherals.touchpad tap-to-click  |grep true"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["GNOME"] ,
+   "installcolor"                 : "#66CDDD" ,
+   "removecolor"                  : "#FF0000" ,
+   "textcolor"                    : "#FFFFFF" ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Enable","Disable"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "gnome_logo.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton" ,
+   "state_type"                   : 0 ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : false ,
+   "choice_install_message"       : "",
+   "choice_remove_message"        : "",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : true
+
+}
+

@@ -1,0 +1,36 @@
+{
+   
+   "id"                           : "Firefox32" ,
+   "message"                      : "Firefox 32bit + Flash Player" ,
+   "info"                         : "Mozilla Firefox is an open-source web browser" ,
+   "summary"                      : ["Mozilla Firefox is an open-source web browser, designed for standards compliance, performance and portability.","Install Firefox","Remove Firefox",""] ,
+   "install_command"              : ["dnf install -y --best http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm","rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux","dnf install firefox flash-plugin -y --best"] ,
+   "remove_command"               : ["rpm -e --nodeps firefox flash-plugin"] ,
+   "check_command"                : ["ls /usr/bin/firefox >/dev/null"," ls /usr/bin/flash-player-properties >/dev/null"] ,
+   "arch"                         : "32bitonly" ,
+   "perms"                        : ["pkexec","pkexec"] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "installcolor"                 : "#66CDDD" ,
+   "removecolor"                  : "#FF0000" ,
+   "textcolor"                    : "#FFFFFF" ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Install","Remove"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "firefox.png" ,
+   "group"                        : "Internet Browsers" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton",
+   "state_type"                   : 0 ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : true ,
+   "choice_install_message"       : "Are you sure do you want install firefox + flashplayer?",
+   "choice_remove_message"        : "Are you sure do you want remove firefox + flashplayer?",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : true
+
+
+}

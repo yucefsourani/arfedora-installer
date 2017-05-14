@@ -1,0 +1,36 @@
+{
+   
+   "id"                           : "Gnome_Alt_Shift" ,
+   "message"                      : "Input Switch" ,
+   "info"                         : "Alt+Shift To Switch to next input source" ,
+   "summary"                      : ["Switch to next input source","Set Alt+Shift To Switch to next input source","Reset",""] ,
+   "install_command"              : [["norepr","gsettings set org.gnome.desktop.input-sources xkb-options  \"['grp:alt_shift_toggle']\""]] ,
+   "remove_command"               : ["gsettings reset org.gnome.desktop.input-sources xkb-options"] ,
+   "check_command"                : ["gsettings get org.gnome.desktop.input-sources xkb-options |grep grp:alt_shift_toggle >/dev/null"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["GNOME"] ,
+   "installcolor"                 : "#66CDDD" ,
+   "removecolor"                  : "#FF0000" ,
+   "textcolor"                    : "#FFFFFF" ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Alt + Shift","Reset"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "gnome_logo.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton" ,
+   "state_type"                   : 0 ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : false ,
+   "choice_install_message"       : "",
+   "choice_remove_message"        : "",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : true
+
+}
+

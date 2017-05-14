@@ -1,0 +1,300 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+#
+#  arfedora-installer
+#  
+#  Copyright 2017 youcefsourani <youssef.m.sourani@gmail.com>
+#  
+#  http://www.arfedora.blogspot.com
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#  
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#  MA 02110-1301, USA.
+#  
+#  
+import gi
+gi.require_version("Gtk","3.0")
+from gi.repository import Gtk,GLib,GdkPixbuf
+import os
+import sys
+import time
+import json
+import gettext
+import subprocess
+import threading
+import multiprocessing
+from arfedoraframework import *
+gi.require_version("Gtk","3.0")
+from gi.repository import Gtk,GLib,GdkPixbuf
+
+import os,subprocess,sys
+result = {}
+
+                                            
+project_location=os.path.dirname(os.path.abspath(__file__))
+
+gettext.install("arfedora-installer")
+
+
+
+
+
+def init_check():
+    if not sys.version.startswith("3"):
+        NInfo(_("Use Python 3 Try run \"python3 %s\""%__file__))
+        sys.exit()
+init_check()
+
+
+
+
+def about_(button,parent):
+    authors = ["Youssef Sourani <youssef.m.sourani@gmail.com>"]
+    about = Gtk.AboutDialog()
+    about.set_transient_for(parent)
+    about.set_program_name("arfedora-installer")
+    about.set_version("0.1beta")
+    about.set_copyright("Copyright © 2017 Youssef Sourani")
+    about.set_comments(_("arfedora-installer is a simple tool for install programs"))
+    about.set_website("http://www.arfedora.blogspot.com")
+    about.set_website_label(_('Website'))
+    about.set_logo(GdkPixbuf.Pixbuf.new_from_file("{}/arfedora-installer.png".format(project_location)))
+    about.set_authors(authors)
+    about.set_license_type(Gtk.License.GPL_3_0)
+    translators = "translator-credits"
+    if translators != "translator-credits":
+        about.set_translator_credits(translators)
+    about.run()
+    about.destroy()
+
+    
+def get_distro_name():
+    result=""
+    if not os.path.isfile("/etc/os-release"):
+        return None
+    with open("/etc/os-release","r") as myfile:
+        for l in myfile.readlines():
+            if l.startswith("ID"):
+                result=l.split("=")[1].strip()
+    if result.startswith("\"") and result.endswith("\""):
+        return result[1:-1]
+    elif result.startswith("\'") and result.endswith("\'"):
+        return result[1:-1]
+    return result
+
+def get_distro_version():
+    result=""
+    if not os.path.isfile("/etc/os-release"):
+        return None
+    with open("/etc/os-release","r") as myfile:
+        for l in myfile.readlines():
+            if l.startswith("VERSION_ID"):
+                result=l.split("=")[1].strip()
+    if result.startswith("\"") and result.endswith("\""):
+        return result[1:-1]
+    elif result.startswith("\'") and result.endswith("\'"):
+        return result[1:-1]
+    return result
+
+
+distro_name = get_distro_name()
+distro_version = get_distro_version()
+plugins_location = "{}/Plugins".format(project_location)
+
+
+
+
+if os.uname().machine == "x86_64":
+    arch = "64bit"
+else:
+    arch = "32bit"
+
+groups = []
+#ids = []
+programs = []
+finally_programs = []
+distro_desktop = subprocess.Popen("echo $XDG_CURRENT_DESKTOP",shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT).communicate()[0].decode("utf-8").strip()
+
+all_tabs = {}
+
+def read_all_plugins():
+    for f in os.listdir(plugins_location):
+        plugin_location = plugins_location+"/{}".format(f)
+        if f.endswith(".Plugin") and os.path.isfile(plugin_location):
+            try:
+                with open(plugin_location) as plugin_file:
+                    plugin = json.loads(plugin_file.read())
+                    #if plugin["id"] not in ids:
+                        #programs.append(plugin)
+                        #ids.append(plugin["id"])
+                    programs.append(plugin)
+                    print ("Read {} Sucess.".format(plugin_location))
+            except:
+                print ("Read {} Fail.".format(plugin_location))
+                continue
+
+read_all_plugins()	
+
+
+def f_p():
+    count = 1
+    global finally_programs
+    for plugin in programs:
+        version = False
+        distro  = False
+        desktop = False
+        if plugin["arch"] == "all":
+            plugin["arch"] = [arch]
+        if "all" in plugin["desktop"]   or distro_desktop in  plugin["desktop"]:
+            desktop = True
+
+        for d in plugin["distro"]:
+            for k,v in d.items():
+                version = False
+                distro  = False
+                if k == "all" or k==distro_name  :
+                    distro = True
+                if v[0] == "==":
+                    if  v[1] == distro_version or v[1] == "all":
+                        version = True
+                elif v[0] == ">":
+                    if int(distro_version) > int(v[1]):
+                        version = True
+                elif v[0] == "<":
+                    if int(distro_version) < int(v[1]):
+                        version = True
+                elif v[0] == "in":
+                    if distro_version in v[1] or v[1] == "all":
+                        version = True
+
+
+                if plugin["arch"]=="32bitonly" :
+                    if arch != "64bit" and  distro and version and desktop :
+                        finally_programs.append(plugin)
+                        if plugin["group"] not in groups:
+                            groups.append(plugin["group"])
+
+                else:
+                    if arch=="64bit":
+                        if   distro and version and desktop:
+                            finally_programs.append(plugin)
+                            if plugin["group"] not in groups:
+                                groups.append(plugin["group"])
+
+                    else:
+                        if plugin["arch"] == arch and  distro and version and desktop:
+                            finally_programs.append(plugin)
+                            if plugin["group"] not in groups:
+                                groups.append(plugin["group"])
+f_p()
+
+
+def reload_(button,win):
+    global programs
+    global finally_programs
+    #global ids
+    global groups
+    global all_tabs
+    all_tabs.clear()
+    groups.clear()
+    #ids.clear()
+    programs.clear()
+    finally_programs.clear()
+    read_all_plugins()
+    f_p()
+    win.destroy()
+    return main_gui(True)
+
+
+
+def main_gui(reset=False):
+    w=Gtk.Window()
+    w.set_title("arfedora-installer")
+    w.maximize ()
+    #w.set_default_size(800,600)
+    #w.set_resizable(False)
+    w.connect("delete-event",Gtk.main_quit)
+    main_vbox=Gtk.VBox(spacing=10)
+    w.add(main_vbox)
+    notebook=Gtk.Notebook()
+    notebook.set_tab_pos(Gtk.PositionType.LEFT)
+    main_vbox.pack_start(notebook,True,True,0)
+    if reset:
+        status_label=Gtk.Label(_("Status : Reset Sucess"))
+    else:
+        status_label=Gtk.Label(_("Status : Ready"))
+    status_label.set_tooltip_text(_("Status Bar"))
+    for group_ in groups:
+        sw=Gtk.ScrolledWindow()
+        sw.set_border_width(10)
+        page_label1 = Gtk.Label(_(group_))
+        page_label1.set_tooltip_text(_(group_))
+        notebook.append_page(sw,page_label1)
+        vbox=Gtk.VBox(spacing=10)
+        sw.add(vbox)
+        hbox=Gtk.HBox()
+        hbox.set_homogeneous(True)
+        vbox.pack_start(hbox,True,True,0)
+        all_tabs.setdefault(group_,vbox)
+    for v in finally_programs:
+        pixbaf=GdkPixbuf.Pixbuf.new_from_file("{}/icons/{}".format(project_location,v["image"]))  
+        pixbaf = pixbaf.scale_simple(50,50,GdkPixbuf.InterpType.BILINEAR)
+        image=Gtk.Image()
+        image.set_from_pixbuf(pixbaf)
+        image.set_tooltip_text(_(v["summary"][0]))
+        label1=Gtk.Label(_("<b>"+v["message"]+"</b>"),use_markup=True)
+        label1.set_tooltip_text(_(v["summary"][0]))
+        try:
+            button=eval(v["buttontype"])(parent_=w,image=image,label_status=label1,label=[_(v["buttonlabel"][0]),_(v["buttonlabel"][1])], \
+            commands_install=v["install_command"],commands_remove=v["remove_command"],run_from_file=v["run_from_file"],tocheck=v["check_command"],\
+            exec__=v["perms"],program_name=v["program_name"], \
+            status=[status_label.set_text,(_(v["statuslabel"][0]),),(_(v["statuslabel"][1]),)],func_install=None,\
+            func_remove=None,argv_install=None, \
+            argv_remove=None,choice=v["choice"],signal="clicked",if_true=v["command_if_false_block"],\
+            if_false=v["command_if_true_block"],if_e=v["command_if_not_match_block"],if_not_e=v["command_if_match_block"],\
+            install_color=v["installcolor"],remove_color=v["removecolor"],text_color=v["textcolor"],nothing=v["onblocktext"],\
+            state_type=v["state_type"],speed=v["processbar_speed"],choice_install_message=v["choice_install_message"],\
+            choice_remove_message=v["choice_remove_message"],install_button_tooltip=v["summary"][1],\
+            remove_button_tooltip=v["summary"][2],nothing_button_tooltip=v["summary"][3],info = v["info"])
+            hbox=Gtk.HBox()
+            hbox.set_homogeneous(True)
+            hbox.pack_start(button,True,True,0)
+            all_tabs[v["group"]].pack_start(hbox,True,True,0)
+        except:
+            print ("Loading id ({}) Fail.".format(v["id"]))
+            continue
+    
+    main_vbox.pack_start(status_label,False,False,0)
+    vb=Gtk.VBox()
+    vb.set_homogeneous(True)
+    main_vbox.pack_start(vb,False,False,0)	
+    #vb.pack_start(status_label,True,True,0)
+    refresh_button=Gtk.Button(stock=Gtk.STOCK_REFRESH)
+    refresh_button.connect("clicked",reload_,w)
+    refresh_button.set_tooltip_text(_("Reload All Pulgins"))
+    about_button=Gtk.Button(stock=Gtk.STOCK_ABOUT)
+    about_button.connect("clicked",about_,w)
+    about_button.set_tooltip_text(_("About"))
+    quit_button=Gtk.Button(stock=Gtk.STOCK_QUIT)
+    quit_button.connect("clicked",Gtk.main_quit)
+    quit_button.set_tooltip_text(_("Quit"))
+    vb.pack_start(refresh_button,True,True,0)
+    vb.pack_start(about_button,True,True,0)
+    vb.pack_start(quit_button,True,True,0)
+    w.show_all()
+    if not reset:
+        Gtk.main()
+
+if __name__ == "__main__":
+    main_gui()

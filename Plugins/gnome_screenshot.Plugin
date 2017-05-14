@@ -1,0 +1,36 @@
+{
+   
+   "id"                           : "GnomeScreenShot" ,
+   "message"                      : "Gnome ScreenShot" ,
+   "info"                         : "Set ScreenShot Default File Type To JPG/PNG" ,
+   "summary"                      : ["Set Default File Type To JPG/PNG" ,"Set Default File Type To JPG","Set Default File Type To PNG",""],
+   "install_command"              : ["gsettings set org.gnome.gnome-screenshot default-file-type \"jpg\" "] ,
+   "remove_command"               : ["gsettings set org.gnome.gnome-screenshot default-file-type \"png\" "] ,
+   "check_command"                : ["gsettings get org.gnome.gnome-screenshot default-file-type  |grep -i jpg>/dev/null"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [ {"all" : ["==","all"]} ] ,
+   "desktop"                      : ["GNOME"] ,
+   "installcolor"                 : "#66CDDD" ,
+   "removecolor"                  : "#FF0000" ,
+   "textcolor"                    : "#FFFFFF" ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Set JPG","Set PNG"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "gnome_logo.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton" ,
+   "state_type"                   : 0 ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : false ,
+   "choice_install_message"       : "",
+   "choice_remove_message"        : "",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : true
+
+}
+

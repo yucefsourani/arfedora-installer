@@ -1,0 +1,36 @@
+{
+   
+   "id"                           : "Chromium" ,
+   "message"                      : "Chromium" ,
+   "info"                         : "Chromium is an open-source web browser" ,
+   "summary"                      : ["Chromium is an open-source web browser, powered by WebKit (Blink).","Install Chromium","Remove Chromium",""] ,
+   "install_command"              : ["dnf install chromium  -y --best"] ,
+   "remove_command"               : ["rpm -e --nodeps chromium"] ,
+   "check_command"                : ["ls /usr/bin/chromium-browser >/dev/null"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec","pkexec"] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "installcolor"                 : "#66CDDD" ,
+   "removecolor"                  : "#FF0000" ,
+   "textcolor"                    : "#FFFFFF" ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Install","Remove"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "chromium-browser.png" ,
+   "group"                        : "Internet Browsers" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton",
+   "state_type"                   : 0 ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : true,
+   "choice_install_message"       : "Are you sure do you want install chromium?",
+   "choice_remove_message"        : "Are you sure do you want remove chromium?",
+   "program_name"                 : "arfedora-installer" ,
+   "run_from_file"                : true
+
+  
+}

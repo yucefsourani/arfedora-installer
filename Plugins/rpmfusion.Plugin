@@ -1,0 +1,36 @@
+{
+   
+   "id"                           : "RpmFusion" ,
+   "message"                      : "RpmFusion Repository (Require)" ,
+   "info"                         : "RPM Fusion (nonfree and free) Repository" ,
+   "summary"                      : ["RPM Fusion (nonfree and free) Repository Configuration","Install RpmFusion Repository","Remove RpmFusion Repository",""] ,
+   "install_command"              : ["dnf install --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y --best"] ,
+   "remove_command"               : ["rpm -e --nodeps rpmfusion-nonfree-release rpmfusion-free-release"] ,
+   "check_command"                : ["ls /etc/yum.repos.d/rpmfusion-nonfree.repo >/dev/null","ls /etc/yum.repos.d/rpmfusion-free.repo >/dev/null"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec","pkexec"] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "installcolor"                 : "#66CDDD" ,
+   "removecolor"                  : "#FF0000" ,
+   "textcolor"                    : "#FFFFFF" ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Install","Remove"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "3668626.png" ,
+   "group"                        : "Apps" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton",
+   "state_type"                   : 0 ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : true,
+   "choice_install_message"       : "Are you sure do you want install RpmFusion Repository?",
+   "choice_remove_message"        : "Are you sure do you want remove RpmFusion Repository?",
+   "program_name"                 : "arfedora-installer" ,
+   "run_from_file"                : true
+
+  
+}
