@@ -26,6 +26,7 @@ import gi
 gi.require_version("Gtk","3.0")
 from gi.repository import Gtk,GLib,GdkPixbuf,Gdk
 import os
+import sys
 import time
 import subprocess
 import threading
@@ -184,8 +185,8 @@ class WWait(threading.Thread):
 class BlockInstallRemoveButton(Gtk.HBox):
     def __init__(self,parent_,image,label_status,label,commands_install,commands_remove,run_from_file=False,tocheck=None, \
     exec__=["pkexec","pkexec"],program_name="arfedora",status=None,func_install=None,func_remove=False,argv_install=None, \
-    argv_remove=None,choice=False,speed=200,signal="clicked",install_color=None,remove_color=None,text_color=None, \
-    if_true=None,if_false=None,if_e=None,if_not_e=None,nothing=None,state_type=1,\
+    argv_remove=None,choice=False,speed=200,signal="clicked", \
+    if_true=None,if_false=None,if_e=None,if_not_e=None,nothing=None,\
     choice_install_message="",choice_remove_message="",install_button_tooltip="",remove_button_tooltip="",nothing_button_tooltip="",info=""):
         Gtk.HBox.__init__(self)
         self.set_homogeneous(True)
@@ -213,18 +214,11 @@ class BlockInstallRemoveButton(Gtk.HBox):
         self.button_box.set_homogeneous(True)
         self.file_to_run = self.init_arfedora()
         self.c = self.check()
-        self.install_color = install_color
-        self.remove_color = remove_color
-        self.text_color = text_color
-        self.red = Gdk.color_parse(self.install_color)
-        self.green = Gdk.color_parse(self.remove_color)
-        self.textcolor = Gdk.color_parse(self.text_color)
         self.if_true = if_true
         self.if_false = if_false
         self.if_e = if_e
         self.if_not_e = if_not_e
         self.nothing = nothing
-        self.state_type = state_type
         self.choice_install_message= choice_install_message
         self.choice_remove_message= choice_remove_message
         self.install_button_tooltip = install_button_tooltip
@@ -232,9 +226,10 @@ class BlockInstallRemoveButton(Gtk.HBox):
         self.nothing_button_tooltip = nothing_button_tooltip
         self.info = info
         self.info_label = Gtk.Label(self.info[0:58])
+
         if self.c:
             self.button = Gtk.Button(label=self.label[1])
-            self.button.modify_bg(Gtk.StateType(self.state_type),self.green)
+            self.button.get_style_context().add_class("destructive-action")
             self.button.set_tooltip_text(self.remove_button_tooltip)
             if self.func_install == None :
                 self.button.connect(self.signal,self.install_remove_command)
@@ -242,16 +237,13 @@ class BlockInstallRemoveButton(Gtk.HBox):
                 self.button.connect(self.signal,self.install_remove_func)
         else:
             self.button = Gtk.Button(label=self.label[0])
-            self.button.modify_bg(Gtk.StateType(self.state_type),self.red)
+            self.button.get_style_context().add_class("suggested-action")
             self.button.set_tooltip_text(self.install_button_tooltip)
             if self.func_install == None:
                 self.button.connect(self.signal,self.install_remove_command)
             else:
                 self.button.connect(self.signal,self.install_remove_func)
-        try:
-            self.button.get_children()[0].modify_text(Gtk.StateType(state=self.state_type),color=self.textcolor)
-        except:
-            pass
+
 
         if len(self.if_true) != 0:
             if not self.if_true_():
@@ -380,15 +372,13 @@ class BlockInstallRemoveButton(Gtk.HBox):
             if remove :
                 if self.check()!=self.c:
                     self.button.set_label(self.label[0])
-                    self.button.modify_bg(Gtk.StateType(self.state_type),self.red)
+                    self.button.get_style_context().remove_class("destructive-action")
+                    self.button.get_style_context().add_class("suggested-action")
                     self.button.set_tooltip_text(self.install_button_tooltip)
                     self.c = False
                     if self.status != None:
                         self.status[0](*self.status[1])
                 else:
-                    self.button.set_label(self.label[1])
-                    self.button.modify_bg(Gtk.StateType(self.state_type),self.green)
-                    self.button.set_tooltip_text(self.remove_button_tooltip)
                     self.c = True
                     if self.status != None:
                         self.status[0](*self.status[2])
@@ -397,15 +387,13 @@ class BlockInstallRemoveButton(Gtk.HBox):
             else:
                 if self.check()!=self.c:
                     self.button.set_label(self.label[1])
-                    self.button.modify_bg(Gtk.StateType(self.state_type),self.green)
+                    self.button.get_style_context().remove_class("suggested-action")
+                    self.button.get_style_context().add_class("destructive-action")
                     self.button.set_tooltip_text(self.remove_button_tooltip)
                     if self.status != None:
                         self.status[0](*self.status[1])
                     self.c = True
                 else:
-                    self.button.set_label(self.label[0])
-                    self.button.modify_bg(Gtk.StateType(self.state_type),self.red)
-                    self.button.set_tooltip_text(self.install_button_tooltip)
                     if self.status != None:
                         self.status[0](*self.status[2])
                     self.c = False
@@ -456,7 +444,7 @@ class BlockInstallRemoveButton(Gtk.HBox):
             with open(file_to_run,"w") as myfile:
                 pass
         except:
-            exit("Error Try Create File {}.").format(file_to_run)
+            sys.exit("Error Try Create File {}.").format(file_to_run)
 
         if oct(os.stat(file_to_run).st_mode)[-3:]!="755":
             if os.getuid() != 0:
@@ -464,5 +452,5 @@ class BlockInstallRemoveButton(Gtk.HBox):
             else:
                 check = subprocess.call("chmod 755 {}".format(file_to_run),shell=True)
             if check != 0:
-                exit()
+                sys.exit()
         return file_to_run

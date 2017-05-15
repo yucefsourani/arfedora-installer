@@ -258,8 +258,7 @@ def main_gui(reset=False):
             func_remove=None,argv_install=None, \
             argv_remove=None,choice=v["choice"],signal="clicked",if_true=v["command_if_false_block"],\
             if_false=v["command_if_true_block"],if_e=v["command_if_not_match_block"],if_not_e=v["command_if_match_block"],\
-            install_color=v["installcolor"],remove_color=v["removecolor"],text_color=v["textcolor"],nothing=v["onblocktext"],\
-            state_type=v["state_type"],speed=v["processbar_speed"],choice_install_message=v["choice_install_message"],\
+            nothing=v["onblocktext"],speed=v["processbar_speed"],choice_install_message=v["choice_install_message"],\
             choice_remove_message=v["choice_remove_message"],install_button_tooltip=v["summary"][1],\
             remove_button_tooltip=v["summary"][2],nothing_button_tooltip=v["summary"][3],info = v["info"])
             hbox=Gtk.HBox()
