@@ -1,0 +1,32 @@
+{
+   
+   "id"                           : "dnf_cache" ,
+   "message"                      : "Add KeepCache" ,
+   "info"                         : "Add KeepCache To dnf" ,
+   "summary"                      : ["Add KeepCache To dnf","Set KeepCache True","Set KeepCache False",""] ,
+   "install_command"              : ["python3 scripts/dnf-cache.py ~/.arfedora-installer add pkexec"] ,
+   "remove_command"               : ["python3 scripts/dnf-cache.py ~/.arfedora-installer remove pkexec"] ,
+   "check_command"                : ["python3 scripts/dnf-cache.py ~/.arfedora-installer  check"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Set True","Set False"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "fedora_navy_T.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton" ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : true ,
+   "choice_install_message"       : "Are you sure do you want Add KeepCache?",
+   "choice_remove_message"        : "Are you sure do you want Remove KeepCache?",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : false
+
+}
+

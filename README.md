@@ -8,7 +8,11 @@ www.arfedora.blogspot.com
 
 # Screenshot
 
-![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-15%2017-00-02.jpg "Screenshot")
+![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2017-29-53.jpg "Screenshot")
+
+![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2018-17-08.jpg "Screenshot")
+
+![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2018-17-27.jpg "Screenshot")
 
 ![Alt text](https://raw.githubusercontent.com/yucefsourani/arfedora-installer/master/Screenshot%20from%202017-05-14%2018-00-16.jpg "Screenshot")
 
@@ -39,6 +43,8 @@ www.arfedora.blogspot.com
   * ``` sudo chmod 755 ~/arfedora-installer/arfedora-installer or su -c "chmod 755 arfedora-installer/arfedora-installer" ```
 
   * ``` ~/arfedora-installer/arfedora-installer or python3 ~/arfedora-installer/arfedora-installer ```
+
+  * ``` sudo chmod 755 ~/arfedora-installer/arfedora-installer/scripts/* or su -c "chmod 755 ~/arfedora-installer/arfedora-installer/scripts/*" ```
  
  
  

@@ -26,7 +26,6 @@ import gi
 gi.require_version("Gtk","3.0")
 from gi.repository import Gtk,GLib,GdkPixbuf,Gdk
 import os
-import sys
 import time
 import subprocess
 import threading
@@ -444,7 +443,7 @@ class BlockInstallRemoveButton(Gtk.HBox):
             with open(file_to_run,"w") as myfile:
                 pass
         except:
-            sys.exit("Error Try Create File {}.").format(file_to_run)
+            exit("Error Try Create File {}.").format(file_to_run)
 
         if oct(os.stat(file_to_run).st_mode)[-3:]!="755":
             if os.getuid() != 0:
@@ -452,5 +451,5 @@ class BlockInstallRemoveButton(Gtk.HBox):
             else:
                 check = subprocess.call("chmod 755 {}".format(file_to_run),shell=True)
             if check != 0:
-                sys.exit()
+                exit()
         return file_to_run

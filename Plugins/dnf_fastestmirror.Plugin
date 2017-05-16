@@ -1,0 +1,32 @@
+{
+   
+   "id"                           : "dnf_fastestmirror" ,
+   "message"                      : "Add Fastestmirror" ,
+   "info"                         : "Add Fastestmirror To dnf" ,
+   "summary"                      : ["Add Fastestmirror To dnf","Set Fastestmirror True","Set Fastestmirror False",""] ,
+   "install_command"              : ["python3 scripts/dnf-fastestmirror.py ~/.arfedora-installer add pkexec"] ,
+   "remove_command"               : ["python3 scripts/dnf-fastestmirror.py ~/.arfedora-installer remove pkexec"] ,
+   "check_command"                : ["python3 scripts/dnf-fastestmirror.py ~/.arfedora-installer  check"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Set True","Set False"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "fedora_navy_T.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton" ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : true ,
+   "choice_install_message"       : "Are you sure do you want Add Fastestmirror?",
+   "choice_remove_message"        : "Are you sure do you want Remove Fastestmirror?",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : false
+
+}
+
