@@ -13,7 +13,7 @@
    "desktop"                      : ["all"] ,
    "onblocktext"                  : "" ,
    "buttonlabel"                  : ["Set True","Set False"] ,
-   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "statuslabel"                  : ["Status : Done Refresh Plugins","Status : Fail"] ,
    "image"                        : "fedora_navy_T.png" ,
    "group"                        : "tweak" ,
    "command_if_false_block"       : [] ,
