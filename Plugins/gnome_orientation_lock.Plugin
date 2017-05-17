@@ -1,0 +1,32 @@
+{
+   
+   "id"                           : "Orientation_Lock " ,
+   "message"                      : "Fix Screen Reversal" ,
+   "info"                         : "Fix Screen Reversal (Gnome)" ,
+   "summary"                      : ["Fix Screen Reversal","Fix Screen Reversal","Reset",""] ,
+   "install_command"              : ["gsettings set org.gnome.settings-daemon.peripherals.touchscreen orientation-lock true"] ,
+   "remove_command"               : ["gsettings reset org.gnome.settings-daemon.peripherals.touchscreen orientation-lock"] ,
+   "check_command"                : ["gsettings get org.gnome.settings-daemon.peripherals.touchscreen orientation-lock  |grep true >/dev/null"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["GNOME"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Fix Screen","Reset"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "gnome_logo.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton" ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : false ,
+   "choice_install_message"       : "",
+   "choice_remove_message"        : "",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : false
+
+}
+
