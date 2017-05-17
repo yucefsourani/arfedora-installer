@@ -1,0 +1,32 @@
+{
+   
+   "id"                           : "Block_Webcam" ,
+   "message"                      : "Block Webcam" ,
+   "info"                         : "BlackList Webcam Driver" ,
+   "summary"                      : ["BlackList Webcam Driver","Block Webcam","Unblock Webcam",""] ,
+   "install_command"              : ["modprobe -r  uvcvideo","echo \"blacklist uvcvideo\"|tee /etc/modprobe.d/blacklistcamera.conf"] ,
+   "remove_command"               : ["modprobe   uvcvideo","rm /etc/modprobe.d/blacklistcamera.conf"] ,
+   "check_command"                : ["lsmod  |grep uvcvideo && exit 1 || exit 0","ls /etc/modprobe.d/blacklistcamera.conf>/dev/null"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec","pkexec"] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Block","Unblock"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "Cornmanthe3rd-Metronome-System-webcam.ico" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton",
+   "processbar_speed"             : 25 ,
+   "choice"                       : true,
+   "choice_install_message"       : "Are you sure do you want Block Webcam?",
+   "choice_remove_message"        : "Are you sure do you want Unblock Webcam?",
+   "program_name"                 : "arfedora-installer" ,
+   "run_from_file"                : true
+
+  
+}

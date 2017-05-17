@@ -1,0 +1,31 @@
+{
+   
+   "id"                           : "Pycharm_Community" ,
+   "message"                      : "Pycharm Community" ,
+   "info"                         : "Intelligent Python IDE" ,
+   "summary"                      : ["The intelligent Python IDE with unique code assistance and analysis,for productive Python development on all levelsy","Install Pycharm Community","Remove Pycharm Community",""],
+   "install_command"              : ["dnf copr enable phracek/PyCharm  -y --best","dnf install pycharm-community -y --best"] ,
+   "remove_command"               : ["rpm -e --nodeps pycharm-community"] ,
+   "check_command"                : ["ls /usr/bin/pycharm >/dev/null"] ,
+   "arch"                         : "64bit" ,
+   "perms"                        : ["pkexec","pkexec"] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Install","Remove"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "pycharm.png" ,
+   "group"                        : "Development/Tools" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton",
+   "processbar_speed"             : 25 ,
+   "choice"                       : true,
+   "choice_install_message"       : "Are you sure do you want install Pycharm Community?",
+   "choice_remove_message"        : "Are you sure do you want remove Pycharm Community?",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : true
+
+}

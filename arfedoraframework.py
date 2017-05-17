@@ -453,3 +453,195 @@ class BlockInstallRemoveButton(Gtk.HBox):
             if check != 0:
                 exit()
         return file_to_run
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class BlockOneShotButton(Gtk.HBox):
+    def __init__(self,parent_,image,label_status,label,commands_install,commands_remove,run_from_file=False,tocheck=None, \
+    exec__=["pkexec","pkexec"],program_name="arfedora",status=None,func_install=None,func_remove=False,argv_install=None, \
+    argv_remove=None,choice=False,speed=200,signal="clicked", \
+    if_true=None,if_false=None,if_e=None,if_not_e=None,nothing=None,\
+    choice_install_message="",choice_remove_message="",install_button_tooltip="",remove_button_tooltip="",nothing_button_tooltip="",info=""):
+        Gtk.HBox.__init__(self)
+        self.set_homogeneous(True)
+        self.parent_ = parent_
+        self.func_install = func_install
+        self.argv_install = argv_install
+        self.label = label
+        self.check_if_sucess = multiprocessing.Value("i",2)
+        self.commands_install = commands_install
+        self.status = status
+        self.speed = speed
+        self.signal = signal
+        self.exec__ = exec__
+        self.choice = choice
+        self.run_from_file = run_from_file
+        self.program_name = program_name
+        self.image = image
+        self.label_status = label_status
+        self.button_box = Gtk.VBox()
+        self.buttonb = Gtk.VBox()
+        self.button_box.set_homogeneous(True)
+        self.file_to_run = self.init_arfedora()
+        self.if_true = if_true
+        self.if_false = if_false
+        self.if_e = if_e
+        self.if_not_e = if_not_e
+        self.nothing = nothing
+        self.choice_install_message= choice_install_message
+        self.install_button_tooltip = install_button_tooltip
+        self.nothing_button_tooltip = nothing_button_tooltip
+        self.info = info
+        self.info_label = Gtk.Label(self.info[0:58])
+
+        self.button = Gtk.Button(label=self.label[0])
+        self.button.get_style_context().add_class("suggested-action")
+        self.button.set_tooltip_text(self.install_button_tooltip)
+        if self.func_install == None:
+            self.button.connect(self.signal,self.install_command)
+        else:
+            self.button.connect(self.signal,self.install_func)
+
+
+        if len(self.if_true) != 0:
+            if not self.if_true_():
+                self.button.set_label(self.nothing)
+                self.button.set_sensitive(False)
+                self.button.set_tooltip_text(self.nothing_button_tooltip)
+
+        if len(self.if_false) != 0:
+            if not self.if_false_():
+                self.button.set_label(self.nothing)
+                self.button.set_sensitive(False)
+                self.button.set_tooltip_text(self.nothing_button_tooltip)
+
+        if len(self.if_e) != 0:
+            if not self.if_e_():
+                self.button.set_label(self.nothing)
+                self.button.set_sensitive(False)
+                self.button.set_tooltip_text(self.nothing_button_tooltip)
+                
+        if len(self.if_not_e) != 0:
+            if not self.if_not_e_():
+                self.button.set_label(self.nothing)
+                self.button.set_sensitive(False)
+                self.button.set_tooltip_text(self.nothing_button_tooltip)
+
+        self.grid = Gtk.Grid(row_homogeneous=True)
+        self.grid.attach(self.image,0,0,1,1)
+        self.grid.attach_next_to(self.label_status,self.image,Gtk.PositionType.BOTTOM,1,1)
+        self.buttonb.pack_start(self.button,False,False,0)
+        self.button_box.pack_start(self.buttonb,False,False,0)
+        self.pack_start(self.grid,False,False,0)
+        self.pack_start(self.info_label,False,False,0)
+        self.pack_start(self.button_box,False,False,0)
+
+
+
+    def if_true_(self):
+        for i in self.if_true:
+            if subprocess.call(i,shell=True) != 0:
+                return False
+        return True
+
+    def if_false_(self):
+        for i in self.if_false:
+            if subprocess.call(i,shell=True) != 0:
+                return True
+        return False
+
+    def if_e_(self):
+        for k,v in self.if_e.items():
+            if subprocess.Popen(k,shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT).communicate()[0].decode("utf-8").strip() == v:
+                return False
+        return True
+
+    def if_not_e_(self):
+        for k,v in self.if_not_e.items():
+            if subprocess.Popen(k,shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT).communicate()[0].decode("utf-8").strip() != v:
+                return False
+        return True
+
+    
+    
+    def install_command(self,button):
+        if self.choice:
+            y = Yes_Or_No(self.choice_install_message,self.parent_)
+            if not y.check():
+                return
+        
+        self.check_if_sucess.value = 2
+        self.parent_.set_sensitive(False)
+        t1 = TC(self.commands_install,self.check_if_sucess,self.run_from_file,file_to_run=self.file_to_run,exec__=self.exec__[1])
+        t2 = WWait(check_if_sucess=self.check_if_sucess,speed=self.speed,box=self.buttonb)
+        t1.start()
+        t2.start()
+        GLib.idle_add(self.install_check_if_done)
+        
+
+    def install_func(self,button):
+        if self.choice:
+            y = Yes_Or_No(self.choice_install_message,self.parent_)
+            if not y.check():
+                return
+        self.check_if_sucess.value = 2
+        self.parent_.set_sensitive(False)
+        t1 = TF(self.func_install,self.check_if_sucess,self.argv_install)
+        t2 = WWait(check_if_sucess=self.check_if_sucess,speed=self.speed,box=self.buttonb)
+        t1.start()
+        t2.start()
+        GLib.idle_add(self.install_check_if_done)
+
+
+    def install_check_if_done(self):
+        if self.check_if_sucess.value == 3:
+            if self.status != None:
+                self.status[0](*self.status[1])
+                    
+            self.parent_.set_sensitive(True)
+            return False
+        
+        elif self.check_if_sucess.value == 4:
+            if self.status != None:
+                self.status[0](*self.status[2])
+
+            self.parent_.set_sensitive(True)
+            return False
+
+        return True
+
+    def init_arfedora(self):
+        logname = os.getenv("LOGNAME")
+        file_to_run = "{}".format(os.path.join("/home",logname,"."+self.program_name+"_to_run"))
+
+        try:
+            with open(file_to_run,"w") as myfile:
+                pass
+        except:
+            exit("Error Try Create File {}.").format(file_to_run)
+
+        if oct(os.stat(file_to_run).st_mode)[-3:]!="755":
+            if os.getuid() != 0:
+                check = subprocess.call("{} chmod 755 {}".format(self.exec__[1],file_to_run),shell=True)
+            else:
+                check = subprocess.call("chmod 755 {}".format(file_to_run),shell=True)
+            if check != 0:
+                exit()
+        return file_to_run

@@ -1,0 +1,32 @@
+{
+   
+   "id"                           : "CodeBlocks" ,
+   "message"                      : "CodeBlocks (c/c++)" ,
+   "info"                         : "An open source, cross platform, free C++ IDE" ,
+   "summary"                      : ["Code::Blocks is a free C++ IDE built specifically to meet the most demanding needs of its users. It was designed, right from the start, to be extensible and configurable. Built around a plug-in framework, Code::Blocks can be extended with plug-in DLLs. It includes a plugin wizard, so you can compile your own plug-ins.","Install CodeBlocks","Remove CodeBlocks",""] ,
+   "install_command"              : ["dnf install codeblocks xterm gcc-c++ gcc -y --best"] ,
+   "remove_command"               : ["rpm -e --nodeps codeblocks"] ,
+   "check_command"                : ["ls /usr/bin/gcc>/dev/null" , "ls /usr/bin/c++>/dev/null" , "ls /usr/bin/xterm>/dev/null","ls /usr/bin/codeblocks>/dev/null"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec","pkexec"] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Install","Remove"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "codeblocks.png" ,
+   "group"                        : "Development/Tools" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton",
+   "processbar_speed"             : 25 ,
+   "choice"                       : true,
+   "choice_install_message"       : "Are you sure do you want install CodeBlocks?",
+   "choice_remove_message"        : "Are you sure do you want remove CodeBlocks?",
+   "program_name"                 : "arfedora-installer" ,
+   "run_from_file"                : true
+
+  
+}

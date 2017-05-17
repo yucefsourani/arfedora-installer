@@ -1,0 +1,32 @@
+{
+   
+   "id"                           : "Update_Grub" ,
+   "message"                      : "Update grub2 (OneShot)" ,
+   "info"                         : "Update Boot Loader grub2" ,
+   "summary"                      : ["Update Boot Loader grub2","Update","",""] ,
+   "install_command"              : ["python3 scripts/update_grub.py fedora fedora grub2 pkexec"] ,
+   "remove_command"               : [] ,
+   "check_command"                : [] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Update",""] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "grub-customizer.ico" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockOneShotButton",
+   "processbar_speed"             : 25 ,
+   "choice"                       : true,
+   "choice_install_message"       : "Are you sure do you want Update Grub?",
+   "choice_remove_message"        : "",
+   "program_name"                 : "arfedora-installer" ,
+   "run_from_file"                : false
+
+  
+}
