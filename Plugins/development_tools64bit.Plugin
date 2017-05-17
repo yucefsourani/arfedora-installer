@@ -1,7 +1,7 @@
 {
    
    "id"                           : "Development_Tools" ,
-   "message"                      : "Development Tools (OneShot)" ,
+   "message"                      : "Development Tools (One Shot)" ,
    "info"                         : "Install Development Tools (gcc kernel-devel...)" ,
    "summary"                      : ["Development Tools (gcc kernel-devel kernel-headers...)","Install Development Tools","",""] ,
    "install_command"              : ["dnf  group mark remove c-development  -y --best","dnf  group mark remove development-tools  -y --best","dnf install @development-tools @c-development kernel kernel-devel kernel-headers -y --best --setopt=strict=0"] ,
