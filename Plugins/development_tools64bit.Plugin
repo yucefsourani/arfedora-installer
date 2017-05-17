@@ -1,0 +1,32 @@
+{
+   
+   "id"                           : "Development_Tools" ,
+   "message"                      : "Development Tools (OneShot)" ,
+   "info"                         : "Install Development Tools (gcc kernel-devel...)" ,
+   "summary"                      : ["Development Tools (gcc kernel-devel kernel-headers...)","Install Development Tools","",""] ,
+   "install_command"              : ["dnf  group mark remove c-development  -y --best","dnf  group mark remove development-tools  -y --best","dnf install @development-tools @c-development kernel kernel-devel kernel-headers -y --best --setopt=strict=0"] ,
+   "remove_command"               : [] ,
+   "check_command"                : [] ,
+   "arch"                         : "64bit" ,
+   "perms"                        : ["pkexec","pkexec"] ,
+   "distro"                       : [{"all" : ["<","26"] }] ,
+   "desktop"                      : ["all"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Run",""] ,
+   "statuslabel"                  : ["Status : Done Reboot Your System","Status : Fail"] ,
+   "image"                        : "fedora_navy_T.png" ,
+   "group"                        : "Apps" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockOneShotButton",
+   "processbar_speed"             : 25 ,
+   "choice"                       : true,
+   "choice_install_message"       : "Are you sure do you want install Development Tools?",
+   "choice_remove_message"        : "",
+   "program_name"                 : "arfedora-installer" ,
+   "run_from_file"                : true
+
+  
+}
