@@ -1,7 +1,7 @@
 {
    
    "id"                           : "Gnome_Left_Minimize_Maximize" ,
-   "message"                      : "Add Left Minimize Maximize" ,
+   "message"                      : "Add Left Minimize Maximize (One Shot)" ,
    "info"                         : "Add Left Minimize Maximize To WM" ,
    "summary"                      : ["Add Left Minimize Maximize To Mutter Windows Manager","Add Left Minimize Maximize","",""] ,
    "install_command"              : ["gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close' "] ,

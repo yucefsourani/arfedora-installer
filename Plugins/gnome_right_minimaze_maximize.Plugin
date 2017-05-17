@@ -1,7 +1,7 @@
 {
    
    "id"                           : "Gnome_Right_Minimize_Maximize" ,
-   "message"                      : "Add Right Minimize Maximize" ,
+   "message"                      : "Add Right Minimize Maximize (One Shot)" ,
    "info"                         : "Add Right Minimize Maximize To WM" ,
    "summary"                      : ["Add Right Minimize Maximize To Mutter Windows Manager","Add Right Minimize Maximize","",""] ,
    "install_command"              : ["gsettings set org.gnome.desktop.wm.preferences button-layout 'close,maximize,minimize:' "] ,
