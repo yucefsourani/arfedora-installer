@@ -1,0 +1,32 @@
+{
+   
+   "id"                           : "Gnome_Right_Minimize_Maximize" ,
+   "message"                      : "Add Right Minimize Maximize" ,
+   "info"                         : "Add Right Minimize Maximize To WM" ,
+   "summary"                      : ["Add Right Minimize Maximize To Mutter Windows Manager","Add Right Minimize Maximize","",""] ,
+   "install_command"              : ["gsettings set org.gnome.desktop.wm.preferences button-layout 'close,maximize,minimize:' "] ,
+   "remove_command"               : [] ,
+   "check_command"                : [] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["GNOME"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Maxmimize/Minimize:",""] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "gnome_logo.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockOneShotButton" ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : false ,
+   "choice_install_message"       : "",
+   "choice_remove_message"        : "",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : false
+
+}
+
