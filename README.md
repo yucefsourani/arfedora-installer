@@ -40,11 +40,11 @@ www.arfedora.blogspot.com
  
   * ``` cd && git clone https://github.com/yucefsourani/arfedora-installer ```
 
-  * ``` sudo chmod 755 ~/arfedora-installer/arfedora-installer or cd && su -c "chmod 755 arfedora-installer/arfedora-installer" ```
+  * ``` sudo chmod 755 ~/arfedora-installer/arfedora-installer or su -c "chmod 755 arfedora-installer/arfedora-installer" ```
 
-  * ``` sudo chmod 755 ~/arfedora-installer/scripts/* or cd && su -c "chmod 755  arfedora-installer/scripts/*" ```
-  
-  * ``` cd ~/arfedora-installer &&  python3 arfedora-installer ```
+  * ``` ~/arfedora-installer/arfedora-installer or python3 ~/arfedora-installer/arfedora-installer ```
+
+  * ``` sudo chmod 755 ~/arfedora-installer/arfedora-installer/scripts/* or su -c "chmod 755 ~/arfedora-installer/arfedora-installer/scripts/*" ```
  
  
  
