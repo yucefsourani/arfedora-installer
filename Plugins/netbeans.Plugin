@@ -1,0 +1,31 @@
+{
+   
+   "id"                           : "NetBeans" ,
+   "message"                      : "NetBeans (All)" ,
+   "info"                         : "NetBeans IDE" ,
+   "summary"                      : [" NetBeans IDE lets you quickly and easily develop Java desktop, mobile, and web applications, as well as HTML5 applications with HTML, JavaScript, and CSS. The IDE also provides a great set of tools for PHP and C/C++ developers. It is free and open source and has a large community of users and developers around the world.","Install NetBeans","Remove NetBeans",""],
+   "install_command"              : ["python3 scripts/netbeans_install.py install"] ,
+   "remove_command"               : ["python3 scripts/netbeans_install.py remove"] ,
+   "check_command"                : ["python3 scripts/netbeans_install.py check"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["all"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Install","Remove"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "netbeans.png" ,
+   "group"                        : "Development/Tools" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton",
+   "processbar_speed"             : 25 ,
+   "choice"                       : true,
+   "choice_install_message"       : "Are you sure do you want install NetBeans?",
+   "choice_remove_message"        : "Are you sure do you want remove NetBeans?",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : false
+
+}
