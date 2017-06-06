@@ -6,7 +6,7 @@ home = os.environ["HOME"]
 
 b = sys.argv[1]
 web = "http://download.netbeans.org/netbeans/8.2/final/bundles/netbeans-8.2-linux.sh"
-name = "/tmp/netbeans-8.2-linux.sh"
+name = "{}/Downloads/netbeans-8.2-linux.sh".format(home)
 location = "{}/netbeans-8.2".format(home)
 
 def install_():
