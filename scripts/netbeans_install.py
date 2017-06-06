@@ -26,6 +26,10 @@ def install_():
 
 
 def remove_():
+    check = subprocess.call("chmod 755 {}/uninstall.sh".format(location),shell=True)
+    if check != 0 :
+        exit(1)
+
     check = subprocess.call("{}/uninstall.sh --silent".format(location),shell=True)
     if check != 0 :
         exit(1)
