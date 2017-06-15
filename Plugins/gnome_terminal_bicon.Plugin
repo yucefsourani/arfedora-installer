@@ -1,0 +1,32 @@
+{
+   
+   "id"                           : "Gnome_TERMINAL_BICON" ,
+   "message"                      : "Gnome Terminal Arabic Support" ,
+   "info"                         : "Gnome Terminal Arabic Support" ,
+   "summary"                      : ["Gnome Terminal Arabic Support","Add Gnome Terminal Arabic Support","Remove Gnome Terminal Arabic Support",""] ,
+   "install_command"              : ["python3  /home/yousseff26/Music/arfedora-installer/scripts/gnome_terminal_bicon.py setup pkexec"] ,
+   "remove_command"               : ["python3  /home/yousseff26/Music/arfedora-installer/scripts/gnome_terminal_bicon.py remove"] ,
+   "check_command"                : ["python3  /home/yousseff26/Music/arfedora-installer/scripts/gnome_terminal_bicon.py check"] ,
+   "arch"                         : "all" ,
+   "perms"                        : ["pkexec",""] ,
+   "distro"                       : [{"all" : ["==","all"] }] ,
+   "desktop"                      : ["GNOME"] ,
+   "onblocktext"                  : "" ,
+   "buttonlabel"                  : ["Setup","Remove"] ,
+   "statuslabel"                  : ["Status : Done","Status : Fail"] ,
+   "image"                        : "gnome_logo.png" ,
+   "group"                        : "tweak" ,
+   "command_if_false_block"       : [] ,
+   "command_if_true_block"        : [] ,
+   "command_if_not_match_block"   : {} ,
+   "command_if_match_block"       : {} ,
+   "buttontype"                   : "BlockInstallRemoveButton" ,
+   "processbar_speed"             : 25 ,
+   "choice"                       : true ,
+   "choice_install_message"       : "Are you sure do you want Setup Arabic Support?",
+   "choice_remove_message"        : "Are you sure do you want Remove Arabic Support?",
+   "program_name"                 : "arfedora-installer",
+   "run_from_file"                : true
+
+}
+
